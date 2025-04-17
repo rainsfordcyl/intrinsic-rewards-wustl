@@ -1,7 +1,7 @@
-#BSUB -J TestWrite
+#BSUB -J train
 #BSUB -o job_output.%J
-#BSUB -e job_error.%J
 #BSUB -R "rusage[mem=1]"
 #BSUB -gpu "num=1:mode=exclusive_process"
 #BSUB -N
-python main.py
+nvidia-smi
+python train.py

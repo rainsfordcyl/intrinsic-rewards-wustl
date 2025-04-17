@@ -1,0 +1,56 @@
+Mon Apr  7 12:06:12 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce GTX 1080 Ti     Off |   00000000:1A:00.0 Off |                  N/A |
+| 21%   28C    P8              9W /  250W |       3MiB /  11264MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Using cuda device
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Wrapping the env in a VecTransposeImage.
+Traceback (most recent call last):
+  File "/home/research/lichengyu/intrinsic-rewards-wustl/Novelty_pro/main.py", line 192, in <module>
+    policy = PPO("CnnPolicy", env, verbose=1, policy_kwargs=get_policy_kwargs(), ent_coef=0.005)
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 135, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/stable_baselines3/common/policies.py", line 818, in __init__
+    super().__init__(
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/stable_baselines3/common/policies.py", line 507, in __init__
+    self.features_extractor = self.make_features_extractor()
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/stable_baselines3/common/policies.py", line 120, in make_features_extractor
+    return self.features_extractor_class(self.observation_space, **self.features_extractor_kwargs)
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/stable_baselines3/common/torch_layers.py", line 102, in __init__
+    n_flatten = self.cnn(th.as_tensor(observation_space.sample()[None]).float()).shape[1]
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 554, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/research/lichengyu/miniconda3/envs/test/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 549, in _conv_forward
+    return F.conv2d(
+RuntimeError: Calculated padded input size per channel: (7 x 7). Kernel size: (8 x 8). Kernel size can't be greater than actual input size

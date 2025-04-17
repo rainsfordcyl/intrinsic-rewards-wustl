@@ -1,0 +1,7 @@
+#BSUB -J count_based
+#BSUB -o job_output.%J
+#BSUB -R "rusage[mem=1]"
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -N
+nvidia-smi
+python count_based.py
